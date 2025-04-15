@@ -10,7 +10,7 @@ export default function MainMessage() {
   const letterDelay = 0.015;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 ">
       {message.map((text, index) => {
         const totalDelayBefore = message
           .slice(0, index)
@@ -25,7 +25,9 @@ export default function MainMessage() {
               delay: totalDelayBefore,
               duration: 0.3,
             }}
-            className="text-xl font-semibold"
+            className={`text-3xl font-semibold ${
+              index === 0 || index === 2 ? 'text-green-700' : ''
+            }`}
           >
             {text.split('').map((letter, i) => (
               <motion.span
