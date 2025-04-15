@@ -10,6 +10,7 @@ const questions = [
         correctAnswer: "B",
         feedbackA: "❌ Mauvais choix : Le streaming en 4K consomme énormément de données et d’énergie.",
         feedbackB: "✅ Bonne alternative : Le téléchargement en HD réduit la bande passante et les émissions.",
+        image: "downloading.jpeg",
         explanation:
             "La 4K en streaming mobilise plus longtemps les serveurs et réseaux, augmentant la consommation énergétique."
     },
@@ -28,6 +29,7 @@ const questions = [
         correctAnswer: "B",
         feedbackA: "❌ Mauvais choix : Les moteurs classiques ne compensent pas leur empreinte carbone.",
         feedbackB: "✅ Bonne alternative : Certains moteurs financent la reforestation ou sont plus sobres.",
+        image: "trees.png",
         explanation:
             "Un moteur comme Ecosia reverse une partie de ses revenus pour planter des arbres et compense ses émissions."
     },
@@ -46,6 +48,7 @@ const questions = [
         correctAnswer: "B",
         feedbackA: "❌ Mauvais choix : Changer souvent augmente l’empreinte carbone liée à la fabrication.",
         feedbackB: "✅ Bonne alternative : Allonger la durée de vie limite l’extraction de ressources.",
+        image: "oldphone.jpeg",
         explanation:
             "La fabrication d’un smartphone représente jusqu’à 80 % de son impact environnemental total."
     },
@@ -73,6 +76,7 @@ const questions = [
         correctAnswer: "B",
         feedbackA: "❌ Mauvais choix : Stocker trop d’infos mobilise les serveurs en continu.",
         feedbackB: "✅ Bonne alternative : Supprimer les fichiers inutiles allège les infrastructures numériques.",
+        image: "servers.png",
         explanation:
             "Le stockage cloud consomme de l’énergie pour faire tourner les serveurs et maintenir la disponibilité 24/7."
     }
@@ -150,6 +154,13 @@ const EcoChoices = ({ currentStage, setCurrentStage }: Props) => {
                                 isCorrect ? "border-green-500" : "border-red-500"
                             } border-4`}
                         >
+                            {questions[step].image && (
+                                <img
+                                    src={`/generatedImages/${questions[step].image}`}
+                                    alt="illustration"
+                                    className="mb-4 rounded-xl mx-auto max-h-64 object-contain"
+                                />
+                            )}
                             <p className="mb-6 text-lg leading-relaxed font-medium text-gray-900">
                                 {isCorrect ? feedbackB : feedbackA}
                             </p>
@@ -165,6 +176,7 @@ const EcoChoices = ({ currentStage, setCurrentStage }: Props) => {
                         </motion.div>
                     )}
                 </AnimatePresence>
+
 
             </div>
         </div>
