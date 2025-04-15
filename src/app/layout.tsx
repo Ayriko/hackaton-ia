@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { TimerProvider } from "./context/TimerContext";
+import { RollingNumberHeader } from "./components/RollingNumberHeader";
 
 export const metadata: Metadata = {
   title: "Hackaton-IA",
@@ -14,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <TimerProvider>
+          {children}
+        </TimerProvider>
       </body>
     </html>
   );

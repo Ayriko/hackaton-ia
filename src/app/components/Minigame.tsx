@@ -4,63 +4,63 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 const questions = [
-  // {
-  //     optionA: "Regarder des vidéos en 4K en streaming",
-  //     optionB: "Télécharger les vidéos en HD",
-  //     correctAnswer: "B",
-  //     feedbackA: "❌ Mauvais choix : Le streaming en 4K consomme énormément de données et d’énergie.",
-  //     feedbackB: "✅ Bonne alternative : Le téléchargement en HD réduit la bande passante et les émissions.",
-  //     image: "downloading.jpeg",
-  //     explanation:
-  //         "La 4K en streaming mobilise plus longtemps les serveurs et réseaux, augmentant la consommation énergétique."
-  // },
-  // {
-  //     optionA: "Laisser son PC allumé H24",
-  //     optionB: "Éteindre ou mettre en veille quand non utilisé",
-  //     correctAnswer: "B",
-  //     feedbackA: "❌ Mauvais choix : Un PC allumé en continu gaspille inutilement de l’énergie.",
-  //     feedbackB: "✅ Bonne alternative : L’extinction permet d’économiser beaucoup d’électricité.",
-  //     explanation:
-  //         "Même en veille, un PC consomme de l’énergie. L’éteindre totalement reste la solution la plus sobre."
-  // },
-  // {
-  //     optionA: "Utiliser un moteur de recherche classique",
-  //     optionB: "Utiliser un moteur éco-responsable (type Ecosia)",
-  //     correctAnswer: "B",
-  //     feedbackA: "❌ Mauvais choix : Les moteurs classiques ne compensent pas leur empreinte carbone.",
-  //     feedbackB: "✅ Bonne alternative : Certains moteurs financent la reforestation ou sont plus sobres.",
-  //     image: "trees.png",
-  //     explanation:
-  //         "Un moteur comme Ecosia reverse une partie de ses revenus pour planter des arbres et compense ses émissions."
-  // },
-  // {
-  //     optionA: "Multiplier les onglets ouverts en permanence",
-  //     optionB: "Fermer les onglets inutilisés",
-  //     correctAnswer: "B",
-  //     feedbackA: "❌ Mauvais choix : Garder de nombreux onglets actifs sollicite davantage de mémoire et d’énergie.",
-  //     feedbackB: "✅ Bonne alternative : Fermer les onglets limite l’usage de RAM et la consommation.",
-  //     explanation:
-  //         "Les onglets ouverts sollicitent le processeur et empêchent la machine d’entrer en mode d’économie d’énergie."
-  // },
-  // {
-  //     optionA: "Changer de smartphone tous les 2 ans",
-  //     optionB: "Garder son smartphone 5 ans ou plus",
-  //     correctAnswer: "B",
-  //     feedbackA: "❌ Mauvais choix : Changer souvent augmente l’empreinte carbone liée à la fabrication.",
-  //     feedbackB: "✅ Bonne alternative : Allonger la durée de vie limite l’extraction de ressources.",
-  //     image: "oldphone.jpeg",
-  //     explanation:
-  //         "La fabrication d’un smartphone représente jusqu’à 80 % de son impact environnemental total."
-  // },
-  // {
-  //     optionA: "Utiliser un écran externe 32 pouces 4K",
-  //     optionB: "Utiliser l’écran intégré d’un ordinateur portable",
-  //     correctAnswer: "B",
-  //     feedbackA: "❌ Mauvais choix : Les grands écrans haute résolution consomment beaucoup plus d’électricité.",
-  //     feedbackB: "✅ Bonne alternative : L’écran intégré est souvent suffisant et bien plus économe.",
-  //     explanation:
-  //         "Un grand écran externe peut consommer 2 à 3 fois plus qu’un écran intégré, surtout en usage prolongé."
-  // },
+  {
+      optionA: "Regarder des vidéos en 4K en streaming",
+      optionB: "Télécharger les vidéos en HD",
+      correctAnswer: "B",
+      feedbackA: "❌ Mauvais choix : Le streaming en 4K consomme énormément de données et d’énergie.",
+      feedbackB: "✅ Bonne alternative : Le téléchargement en HD réduit la bande passante et les émissions.",
+      image: "downloading.jpeg",
+      explanation:
+          "La 4K en streaming mobilise plus longtemps les serveurs et réseaux, augmentant la consommation énergétique."
+  },
+  {
+      optionA: "Laisser son PC allumé H24",
+      optionB: "Éteindre ou mettre en veille quand non utilisé",
+      correctAnswer: "B",
+      feedbackA: "❌ Mauvais choix : Un PC allumé en continu gaspille inutilement de l’énergie.",
+      feedbackB: "✅ Bonne alternative : L’extinction permet d’économiser beaucoup d’électricité.",
+      explanation:
+          "Même en veille, un PC consomme de l’énergie. L’éteindre totalement reste la solution la plus sobre."
+  },
+  {
+      optionA: "Utiliser un moteur de recherche classique",
+      optionB: "Utiliser un moteur éco-responsable (type Ecosia)",
+      correctAnswer: "B",
+      feedbackA: "❌ Mauvais choix : Les moteurs classiques ne compensent pas leur empreinte carbone.",
+      feedbackB: "✅ Bonne alternative : Certains moteurs financent la reforestation ou sont plus sobres.",
+      image: "trees.png",
+      explanation:
+          "Un moteur comme Ecosia reverse une partie de ses revenus pour planter des arbres et compense ses émissions."
+  },
+  {
+      optionA: "Multiplier les onglets ouverts en permanence",
+      optionB: "Fermer les onglets inutilisés",
+      correctAnswer: "B",
+      feedbackA: "❌ Mauvais choix : Garder de nombreux onglets actifs sollicite davantage de mémoire et d’énergie.",
+      feedbackB: "✅ Bonne alternative : Fermer les onglets limite l’usage de RAM et la consommation.",
+      explanation:
+          "Les onglets ouverts sollicitent le processeur et empêchent la machine d’entrer en mode d’économie d’énergie."
+  },
+  {
+      optionA: "Changer de smartphone tous les 2 ans",
+      optionB: "Garder son smartphone 5 ans ou plus",
+      correctAnswer: "B",
+      feedbackA: "❌ Mauvais choix : Changer souvent augmente l’empreinte carbone liée à la fabrication.",
+      feedbackB: "✅ Bonne alternative : Allonger la durée de vie limite l’extraction de ressources.",
+      image: "oldphone.jpeg",
+      explanation:
+          "La fabrication d’un smartphone représente jusqu’à 80 % de son impact environnemental total."
+  },
+  {
+      optionA: "Utiliser un écran externe 32 pouces 4K",
+      optionB: "Utiliser l’écran intégré d’un ordinateur portable",
+      correctAnswer: "B",
+      feedbackA: "❌ Mauvais choix : Les grands écrans haute résolution consomment beaucoup plus d’électricité.",
+      feedbackB: "✅ Bonne alternative : L’écran intégré est souvent suffisant et bien plus économe.",
+      explanation:
+          "Un grand écran externe peut consommer 2 à 3 fois plus qu’un écran intégré, surtout en usage prolongé."
+  },
   {
     optionA:
       'Utiliser des objets connectés inutiles (réveil WiFi, brosse à dents connectée...)',
