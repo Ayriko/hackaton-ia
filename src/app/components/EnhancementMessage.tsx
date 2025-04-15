@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function EnhancementMessage() {
   return (
     <div className="flex flex-col justify-center items-center text-3xl space-y-2">
@@ -6,7 +8,16 @@ export default function EnhancementMessage() {
       <p>
         Une façon douce d'ouvrir les yeux sur l’impact de notre vie numérique.
       </p>
-      <div className="text-green-700 mt-8 text-center">
+      <div className="flex justify-center mt-4 mb-6">
+        <Image
+          src="/final_picture.png"
+          alt="Conclusion"
+          width={500}
+          height={200}
+          unoptimized={true}
+        />
+      </div>
+      <div className="text-green-700 text-center">
         <p className="text-black">
           Ton empreinte numérique t’accompagne partout, même quand tu scrolles.
         </p>
