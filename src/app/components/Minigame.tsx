@@ -1,104 +1,172 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const questions = [
     {
-        optionA: "Utiliser un sèche-linge électrique",
-        optionB: "Étendre ton linge à l’air libre",
+        optionA: "Regarder des vidéos en 4K en streaming",
+        optionB: "Télécharger les vidéos en HD",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Le streaming en 4K consomme énormément de données et d’énergie.",
+        feedbackB: "✅ Bonne alternative : Le téléchargement en HD réduit la bande passante et les émissions.",
         explanation:
-            "Le sèche-linge consomme jusqu’à 3-5 kWh par cycle. L’étendage = 0 émission."
+            "La 4K en streaming mobilise plus longtemps les serveurs et réseaux, augmentant la consommation énergétique."
     },
     {
-        optionA: "Chauffage au gaz naturel",
-        optionB: "Pompe à chaleur électrique",
+        optionA: "Laisser son PC allumé H24",
+        optionB: "Éteindre ou mettre en veille quand non utilisé",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Un PC allumé en continu gaspille inutilement de l’énergie.",
+        feedbackB: "✅ Bonne alternative : L’extinction permet d’économiser beaucoup d’électricité.",
         explanation:
-            "La pompe à chaleur est plus efficiente et peut être alimentée en énergie verte."
+            "Même en veille, un PC consomme de l’énergie. L’éteindre totalement reste la solution la plus sobre."
     },
     {
-        optionA: "Cuisinière à gaz",
-        optionB: "Plaque à induction",
+        optionA: "Utiliser un moteur de recherche classique",
+        optionB: "Utiliser un moteur éco-responsable (type Ecosia)",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Les moteurs classiques ne compensent pas leur empreinte carbone.",
+        feedbackB: "✅ Bonne alternative : Certains moteurs financent la reforestation ou sont plus sobres.",
         explanation:
-            "Les plaques à induction sont plus efficaces : 90 % de l’énergie est transmise contre 40 % pour le gaz."
+            "Un moteur comme Ecosia reverse une partie de ses revenus pour planter des arbres et compense ses émissions."
     },
     {
-        optionA: "Voiture électrique",
-        optionB: "Vélo (classique ou électrique)",
+        optionA: "Multiplier les onglets ouverts en permanence",
+        optionB: "Fermer les onglets inutilisés",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Garder de nombreux onglets actifs sollicite davantage de mémoire et d’énergie.",
+        feedbackB: "✅ Bonne alternative : Fermer les onglets limite l’usage de RAM et la consommation.",
         explanation:
-            "Le vélo est le moyen de transport le moins carboné. L’électrique reste sobre."
+            "Les onglets ouverts sollicitent le processeur et empêchent la machine d’entrer en mode d’économie d’énergie."
     },
     {
-        optionA: "Réseau électrique classique",
-        optionB: "Auto-alimentation via panneaux solaires",
+        optionA: "Changer de smartphone tous les 2 ans",
+        optionB: "Garder son smartphone 5 ans ou plus",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Changer souvent augmente l’empreinte carbone liée à la fabrication.",
+        feedbackB: "✅ Bonne alternative : Allonger la durée de vie limite l’extraction de ressources.",
         explanation:
-            "Les panneaux solaires réduisent fortement l'empreinte carbone domestique."
+            "La fabrication d’un smartphone représente jusqu’à 80 % de son impact environnemental total."
     },
     {
-        optionA: "Ballon d’eau chaude électrique",
-        optionB: "Chauffe-eau solaire thermique",
+        optionA: "Utiliser un écran externe 32 pouces 4K",
+        optionB: "Utiliser l’écran intégré d’un ordinateur portable",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Les grands écrans haute résolution consomment beaucoup plus d’électricité.",
+        feedbackB: "✅ Bonne alternative : L’écran intégré est souvent suffisant et bien plus économe.",
         explanation:
-            "Le chauffe-eau solaire couvre jusqu’à 70 % des besoins annuels sans électricité."
+            "Un grand écran externe peut consommer 2 à 3 fois plus qu’un écran intégré, surtout en usage prolongé."
     },
     {
-        optionA: "PC de bureau gamer",
-        optionB: "Ordinateur portable économe",
+        optionA: "Utiliser des objets connectés inutiles (réveil WiFi, brosse à dents connectée...)",
+        optionB: "Limiter les objets connectés au strict nécessaire",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Chaque objet connecté nécessite de l’électricité et des serveurs pour fonctionner.",
+        feedbackB: "✅ Bonne alternative : Moins d’objets = moins d’énergie utilisée en continu.",
         explanation:
-            "Un PC portable consomme environ 5x moins d’énergie qu’un PC fixe puissant."
+            "Les objets connectés créent un usage permanent de données, même lorsqu’ils ne sont pas utilisés."
     },
     {
-        optionA: "Stockage cloud (data centers)",
-        optionB: "Disque dur externe local",
+        optionA: "Conserver tous ses mails et fichiers indéfiniment",
+        optionB: "Faire régulièrement le tri dans ses données",
+        correctAnswer: "B",
+        feedbackA: "❌ Mauvais choix : Stocker trop d’infos mobilise les serveurs en continu.",
+        feedbackB: "✅ Bonne alternative : Supprimer les fichiers inutiles allège les infrastructures numériques.",
         explanation:
-            "Le stockage local, bien géré, est plus sobre que les data centers fonctionnant 24/7."
+            "Le stockage cloud consomme de l’énergie pour faire tourner les serveurs et maintenir la disponibilité 24/7."
     }
 ];
 
-const EcoChoices = () => {
-    const [step, setStep] = useState(0);
-    const { optionA, optionB, explanation } = questions[step];
 
-    const handleNext = () => {
-        setStep((prev) => (prev + 1 < questions.length ? prev + 1 : 0));
+type Props = {
+    currentStage: number;
+    setCurrentStage: (val: number) => void;
+};
+
+const EcoChoices = ({ currentStage, setCurrentStage }: Props) => {
+    const [step, setStep] = useState(0);
+    const [showExplanation, setShowExplanation] = useState(false);
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+
+    const handleOptionClick = (option: string) => {
+        setSelectedOption(option);
+        setIsCorrect(option === questions[step].correctAnswer);
+        setShowExplanation(true);
     };
 
-    return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-100 to-blue-100 p-6">
-            <motion.h1
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-3xl md:text-4xl font-bold text-green-800 mb-8 text-center"
-            >
-                Tu préfères...
-            </motion.h1>
+    const handleNext = () => {
+        if (step + 1 < questions.length) {
+            setStep((prev) => prev + 1);
+            setSelectedOption(null);
+            setIsCorrect(null);
+            setShowExplanation(false);
+        }else {
+        setCurrentStage(2);
+        }
+    };
 
-            <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-            >
+    const { optionA, optionB, feedbackA, feedbackB, explanation } = questions[step];
+
+    return (
+        <div className="min-h-screen w-full flex items-stretch justify-center bg-gradient-to-br from-green-100 to-blue-100">
+            <div className="relative w-full h-screen flex">
                 <div
-                    onClick={handleNext}
-                    className="bg-white shadow-xl rounded-2xl border border-green-300 hover:shadow-2xl transition duration-300 cursor-pointer p-6 text-center text-green-900 text-xl font-medium hover:bg-green-100"
+                    onClick={() => handleOptionClick("A")}
+                    className={`w-1/2 flex items-center justify-center cursor-pointer transition duration-300 text-2xl font-medium p-10 ${
+                        selectedOption === "A"
+                            ? isCorrect
+                                ? "bg-green-100 text-green-900"
+                                : "bg-red-100 text-red-900"
+                            : "bg-white hover:bg-green-100 text-green-800"
+                    }`}
                 >
                     {optionA}
                 </div>
 
+                <div className="w-px bg-gray-300 h-full absolute left-1/2 top-0" />
+
                 <div
-                    onClick={handleNext}
-                    className="bg-white shadow-xl rounded-2xl border border-blue-300 hover:shadow-2xl transition duration-300 cursor-pointer p-6 text-center text-blue-900 text-xl font-medium hover:bg-blue-100"
+                    onClick={() => handleOptionClick("B")}
+                    className={`w-1/2 flex items-center justify-center cursor-pointer transition duration-300 text-2xl font-medium p-10 ${
+                        selectedOption === "B"
+                            ? isCorrect
+                                ? "bg-green-100 text-green-900"
+                                : "bg-red-100 text-red-900"
+                            : "bg-white hover:bg-blue-100 text-blue-800"
+                    }`}
                 >
                     {optionB}
                 </div>
-            </motion.div>
 
-            <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="mt-6 text-center text-lg text-gray-700 max-w-2xl"
-            >
-                💡 {explanation}
-            </motion.p>
+                <AnimatePresence>
+                    {showExplanation && (
+                        <motion.div
+                            initial={{ opacity: 0.3, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl shadow-2xl px-8 py-6 text-center text-gray-900 max-w-2xl z-50 ${
+                                isCorrect ? "border-green-500" : "border-red-500"
+                            } border-4`}
+                        >
+                            <p className="mb-6 text-lg leading-relaxed font-medium text-gray-900">
+                                {isCorrect ? feedbackB : feedbackA}
+                            </p>
+                            <p className="mb-6 text-lg leading-relaxed font-medium text-gray-900">
+                                {explanation}
+                            </p>
+                            <button
+                                onClick={handleNext}
+                                className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition"
+                            >
+                                Suivant
+                            </button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+            </div>
         </div>
     );
 };
