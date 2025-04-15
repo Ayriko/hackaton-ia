@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TimerProvider } from "./context/TimerContext";
-import { RollingNumberHeader } from "./components/RollingNumberHeader";
 
 export const metadata: Metadata = {
   title: "Hackaton-IA",

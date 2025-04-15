@@ -88,11 +88,10 @@ const questions = [
 ];
 
 type Props = {
-  currentStage: number;
   setCurrentStage: (val: number) => void;
 };
 
-const EcoChoices = ({ currentStage, setCurrentStage }: Props) => {
+const EcoChoices = ({ setCurrentStage }: Props) => {
   const [step, setStep] = useState(0);
   const [showExplanation, setShowExplanation] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);

@@ -32,7 +32,6 @@ export default function Home() {
               className="min-h-screen flex items-center justify-center"
             >
               <Minigame
-                currentStage={currentStage}
                 setCurrentStage={setCurrentStage}
               />
             </motion.div>

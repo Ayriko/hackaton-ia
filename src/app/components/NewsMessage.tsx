@@ -14,10 +14,10 @@ export default function NewsMessage() {
       </div>
 
       <h2 className="flex flex-col justify-center text-2xl">
-        <p className="text-green-700 mb-2">D'après l'Arcep,</p>En 2023 le
+        <p className="text-green-700 mb-2">D&apos;après l&apos;Arcep,</p>En 2023 le
         numérique représente 4 % des émissions mondiales de CO2.
         <p className="text-green-700 mb-2">
-          Soit l'équivalent voir plus que tous les vols d'avion dans le monde
+          Soit l&apos;équivalent voir plus que tous les vols d&apos;avion dans le monde
           réunis.
         </p>
         <p>Le streaming vidéo, à lui seul, dépasse 60% du traffic mondial.</p>

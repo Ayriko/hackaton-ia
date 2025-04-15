@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { RollingNumber2 } from "./RollingNumber2"
 import { useCO2Grams, useTimer } from "../context/TimerContext"
 import { RollingNumber } from "./RollingNumber"
