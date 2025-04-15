@@ -1,13 +1,6 @@
 import Image from 'next/image';
 
 export default function NewsMessage() {
-  const tips = [
-    { icon: '🌱', label: 'Baisser la qualité vidéo' },
-    { icon: '📬', label: 'Supprimer les mails inutiles' },
-    { icon: '🔌', label: 'Éteindre la box la nuit' },
-    { icon: '🌍', label: 'Utiliser Ecosia ou Lilo' },
-  ];
-
   return (
     <div className="flex flex-col space-y-6">
       <div className="flex justify-center">
@@ -19,18 +12,16 @@ export default function NewsMessage() {
           unoptimized={true}
         />
       </div>
-      <h2 className="text-2xl">
-        <div>
-          <p className="text-green-900">D'après l'Arcep,</p>En 2023 le numérique
-          représente 4 % des émissions mondiales de CO2.
-        </div>
-        <p className="text-green-900">
+
+      <h2 className="flex flex-col justify-center text-2xl">
+        <p className="text-green-700 mb-2">D'après l'Arcep,</p>En 2023 le
+        numérique représente 4 % des émissions mondiales de CO2.
+        <p className="text-green-700 mb-2">
           Soit l'équivalent voir plus que tous les vols d'avion dans le monde
           réunis.
         </p>
+        <p>Le streaming vidéo, à lui seul, dépasse 60% du traffic mondial.</p>
       </h2>
-
-      <div>Le streaming vidéo, à lui seul, dépasse 60% du traffic mondial</div>
     </div>
   );
 }
