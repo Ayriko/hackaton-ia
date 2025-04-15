@@ -1,24 +1,45 @@
 'use client';
 
 import Minigame from '@/app/components/Minigame';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+import MainMessage from './components/MainMessage';
 
 export default function Home() {
   const [currentStage, setCurrentStage] = useState<number>(1);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-slate-50 to-slate-100">
-      <div className="w-full max-w-4xl mx-auto rounded-xl shadow-lg bg-white overflow-hidden">
-        <div className="p-6">
-          <h1 className="text-3xl font-bold text-center mb-8">
-            Interactive Experience
-          </h1>
+    <main className="min-h-screen w-full overflow-hidden bg-gradient-to-b from-slate-50 to-slate-100">
+      <AnimatePresence mode="wait">
+        {currentStage === 1 && (
+          <motion.div
+            key="minigame"
+            initial={{ y: 0, opacity: 1 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="min-h-screen flex items-center justify-center p-4"
+          >
+            <Minigame
+              currentStage={currentStage}
+              setCurrentStage={setCurrentStage}
+            />
+          </motion.div>
+        )}
 
-          <div className="transition-all duration-500 ease-in-out">
-            {currentStage === 1 && <Minigame />}
-          </div>
-        </div>
-      </div>
+        {currentStage === 2 && (
+          <motion.div
+            key="mainmessage"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="min-h-screen flex items-center justify-center p-4"
+          >
+            <MainMessage />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
