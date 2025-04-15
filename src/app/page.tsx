@@ -11,7 +11,7 @@ import { CO2Explanation } from './components/CO2Explanation';
 import { RollingNumberHeader } from './components/RollingNumberHeader';
 
 export default function Home() {
-  const [currentStage, setCurrentStage] = useState<number>(2);
+  const [currentStage, setCurrentStage] = useState<number>(1);
 
   return (
     <>

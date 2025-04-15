@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function EnhancementMessage() {
   return (
-    <div className="flex flex-col justify-center items-center text-3xl space-y-2">
+    <div className="flex flex-col justify-center items-center text-3xl space-y-2 mt-4">
       <p className="text-green-700">Le jeu du "Tu préfères" ?</p>
       <p>Ce n'était pas qu'un jeu. C'était une invitation.</p>
       <p>

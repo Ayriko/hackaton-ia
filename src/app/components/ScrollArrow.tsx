@@ -22,7 +22,6 @@ export default function ScrollArrow({ stageNumber, setCurrentStage }: Props) {
         <line x1="12" y1="5" x2="12" y2="19"></line>
         <polyline points="19 12 12 19 5 12"></polyline>
       </svg>
-      <p className="text-gray-600 text-sm mt-2">Scroll down</p>
     </div>
   );
 }
